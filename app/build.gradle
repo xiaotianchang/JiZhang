@@ -1,0 +1,101 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+
+    defaultConfig {
+        applicationId rootProject.ext.android.applicationId
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+        manifestPlaceholders = [qqappid: "11111111111111111111"]
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file("F:\\hq科技有限公司\\签名文件\\hhbank.jks")
+            keyAlias "key0"
+            keyPassword "123456"
+            storePassword "123456"
+        }
+        release {
+            storeFile file("F:\\hq科技有限公司\\签名文件\\hhbank.jks")
+            keyAlias "key0"
+            keyPassword "123456"
+            storePassword "123456"
+        }
+
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+
+    implementation 'com.google.android.material:material:1.1.0'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    api rootProject.ext.dependencies."constraintlayout"
+    implementation rootProject.ext.dependencies."appcompat"
+    api rootProject.ext.dependencies."design"
+    implementation rootProject.ext.dependencies."corektx"
+    implementation rootProject.ext.dependencies."kotlin"
+    api rootProject.ext.dependencies."ankocommon"
+    implementation rootProject.ext.dependencies."extensionsruntime"
+    api rootProject.ext.dependencies."retrofit"
+    implementation rootProject.ext.dependencies."converter_gson"
+    implementation rootProject.ext.dependencies."adapter_rxjava2"
+    implementation rootProject.ext.dependencies."rxjava2"
+    implementation rootProject.ext.dependencies."rxandroid"
+    api rootProject.ext.dependencies."rxlifecycle2"
+    api rootProject.ext.dependencies."rxlifecycle2_components"
+    api rootProject.ext.dependencies."logging_interceptor"
+    api rootProject.ext.dependencies."FlycoTabLayout"
+    api rootProject.ext.dependencies."xxpermissions"
+    implementation rootProject.ext.dependencies."rhino_android"
+    api rootProject.ext.dependencies."bga_refreshlayout"
+    api rootProject.ext.dependencies."swipelayout"
+    api rootProject.ext.dependencies."recyclerview"
+    api rootProject.ext.dependencies."glide"
+    api rootProject.ext.dependencies."glide_compiler"
+    api rootProject.ext.dependencies."barlibrary"
+    implementation rootProject.ext.dependencies."tencent_bugly"
+    api rootProject.ext.dependencies."banner"
+    implementation rootProject.ext.dependencies."pinyin4j"
+    implementation rootProject.ext.dependencies."pdf"
+    implementation rootProject.ext.dependencies."filedownloader"
+    //申请手机权限
+    implementation rootProject.ext.dependencies."xxpermissions"
+}

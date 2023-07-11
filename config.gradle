@@ -1,0 +1,102 @@
+// 第三方库，App的版本号的管理和组件模式的切换配置
+ext {
+    COMMON_MODULE_DIR_PATH = projectDir.getPath() + "/common/libs"
+    isAlone = false //false:作为Lib集成存在， true:作为application组件存在
+
+    android = [
+            applicationId    : "com.hq.jizhang", //测试分享/推送
+            compileSdkVersion: 30,
+            buildToolsVersion: "30.0.3",
+            minSdkVersion    : 23,
+            targetSdkVersion : 30,
+            versionCode      : 1,
+            versionName      : "1.0.0",
+    ]
+
+    libsVersion = [
+            constraintlayoutVersion = "2.0.2",
+            appcompatVersion = "1.2.0",
+            designVersion = "1.0.0",
+            corektx = "1.3.2",
+            kotlinVersion = "1.3.71",
+            ankocommon = "0.9",
+            recyVersion = "1.0.0",
+            retrofitVersion = "2.9.0",
+            adapter_rxjava2 = "2.5.0",
+            rxjava2Version = "2.2.4",
+            rxandroidVersion = "2.1.0",
+            rxlifecycle2 = "2.2.2",
+            logging_interceptor = "4.9.2",
+            FlycoTabLayout = "3.0.0",
+            xxpermissions = "12.3",
+            rhino_android = "1.0",
+            supportVersion = "1.0.0",
+            bga_refreshlayout = "2.0.0@aar",
+            swipelayoutVersion = "1.2.0@aar",
+            nineoldandroids = "2.4.0",
+            GildeVersion = "4.9.0",
+            bannerVersion = "1.4.10",
+            barlibrary = "3.0.0",
+            tencent_buglyVersion = "3.2.422",
+            arouter_api = "1.5.0",
+            arouter_compiler = "1.2.2",
+            pinyin4jVersion = "2.5.1",
+            pdfVersion = "3.2.0-beta.1",
+            bouncycastleVersion = "1.55",
+            filedownloaderVersion = "1.7.7",
+            photoViewVersion = "1.2.4",
+            zxingVersion = "3.4.0",
+            androidxActivityVersion = "1.2.0",
+            androidxFragmentVersion = "1.3.0",
+    ]
+    dependencies = [
+            //android 官方库
+            appcompat              : "androidx.appcompat:appcompat:$appcompatVersion",
+            constraintlayout       : "androidx.constraintlayout:constraintlayout:$constraintlayoutVersion",
+            recyclerview           : "androidx.recyclerview:recyclerview:$recyVersion",
+            design                 : "com.google.android.material:material:$designVersion",
+            corektx                : "androidx.core:core-ktx:$corektx",
+            kotlin                 : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion",
+            ankocommon             : "org.jetbrains.anko:anko-common:$ankocommon",
+            extensionsruntime      : "org.jetbrains.kotlin:kotlin-android-extensions-runtime:$kotlin_version",
+            //网络框架
+            retrofit               : "com.squareup.retrofit2:retrofit:$retrofitVersion",
+            converter_gson         : "com.squareup.retrofit2:converter-gson:$retrofitVersion",
+            adapter_rxjava2        : "com.squareup.retrofit2:adapter-rxjava2:$adapter_rxjava2",
+            rxjava2                : "io.reactivex.rxjava2:rxjava:$rxjava2Version",
+            rxandroid              : "io.reactivex.rxjava2:rxandroid:$rxandroidVersion",
+            rxlifecycle2           : "com.trello.rxlifecycle2:rxlifecycle:$rxlifecycle2",
+            rxlifecycle2_components: "com.trello.rxlifecycle2:rxlifecycle-components:$rxlifecycle2",
+            logging_interceptor    : "com.squareup.okhttp3:logging-interceptor:$logging_interceptor",
+            //顶部导航
+            FlycoTabLayout         : "io.github.h07000223:flycoTabLayout:$FlycoTabLayout",
+            //权限框架
+            xxpermissions          : "com.github.getActivity:XXPermissions:$xxpermissions",
+            rhino_android          : "io.apisense:rhino-android:$rhino_android",
+            //下拉刷新
+            bga_refreshlayout      : "cn.bingoogolapple:bga-refreshlayout-androidx:$bga_refreshlayout",
+            swipelayout            : "com.daimajia.swipelayout:library:$swipelayoutVersion",
+            //图片加载
+            glide                  : "com.github.bumptech.glide:glide:$GildeVersion",
+            glide_compiler         : "com.github.bumptech.glide:compiler:$GildeVersion",
+            //状态栏框架
+            barlibrary             : "com.gyf.immersionbar:immersionbar:$barlibrary",
+            //腾讯bugly
+            tencent_bugly          : "com.tencent.bugly:crashreport:$tencent_buglyVersion",
+            //阿里路由
+            arouter_api            : "com.alibaba:arouter-api:$arouter_api",
+            arouter_compiler       : "com.alibaba:arouter-compiler:$arouter_compiler",
+            //轮播图
+            banner                 : "com.youth.banner:banner:$bannerVersion",
+            //汉字转拼音
+            pinyin4j               : "com.belerweb:pinyin4j:$pinyin4jVersion",
+            //pdf显示
+            pdf                    : "com.github.barteksc:android-pdf-viewer:$pdfVersion",
+            //文件下载
+            filedownloader         : "com.liulishuo.filedownloader:library:$filedownloaderVersion",
+            /*        //图片放大
+                    photoView              : "com.github.chrisbanes:PhotoView:library:$photoViewVersion"*/
+
+    ]
+
+}

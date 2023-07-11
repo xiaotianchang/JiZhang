@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_blue_title"
+        android:paddingStart="18dp"
+        android:paddingEnd="18dp"
+        android:paddingBottom="12dp">
+
+        <include
+            android:id="@+id/fg_detail_rl"
+            layout="@layout/activity_basetitle" />
+
+        <TextView
+            android:id="@+id/fg_detail_tv_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2023"
+            android:textColor="@color/white"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fg_detail_rl" />
+
+        <TextView
+            android:id="@+id/fg_detail_tv_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@mipmap/arrow_bottom"
+            android:text="07"
+            android:gravity="center_vertical"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:drawablePadding="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fg_detail_tv_year" />
+
+        <View
+            android:id="@+id/fg_detail_view_month"
+            android:layout_width="0.8dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="@id/fg_detail_tv_month"
+            app:layout_constraintStart_toEndOf="@id/fg_detail_tv_month"
+            app:layout_constraintTop_toTopOf="@id/fg_detail_tv_month" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintLeft_toRightOf="@id/fg_detail_view_month"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/fg_detail_tv_year">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="收入"
+                android:textColor="@color/white"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="支出"
+                android:textColor="@color/white"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.hq.jizhang.view.CustomRcyLayout
+        android:id="@+id/fg_detail_view_rcy"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

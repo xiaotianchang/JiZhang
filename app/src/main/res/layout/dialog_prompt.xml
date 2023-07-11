@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/shape_white_radius8"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<!--
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_white_radius8"
+        android:orientation="vertical">
+-->
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/dialog_prompt_tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="提示"
+            android:textColor="@color/st_text"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/dialog_prompt_tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="20dp"
+            android:gravity="center"
+            android:textColor="@color/st_text"
+            android:textSize="15sp" />
+
+        <View
+            android:id="@+id/dialog_prompt_view_desc"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/electronicNotice_Line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/dialog_prompt_tv_cancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/selector_white_leftbtnbg"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:paddingTop="19dp"
+                android:paddingBottom="19dp"
+                android:textColor="@color/text_six"
+                android:textSize="16sp"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toLeftOf="parent" />
+
+            <View
+                android:id="@+id/dialog_prompt_view_cancel"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/electronicNotice_Line" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/dialog_prompt_tv_confirm"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/selector_white_rightbtnbg"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:paddingTop="19dp"
+                android:paddingBottom="19dp"
+                android:textColor="@color/btnBlue"
+                android:textSize="16sp"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toRightOf="@id/dialog_prompt_tv_cancel"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dialog_prompt_view_desc" />
+        </LinearLayout>
+
+   <!-- </LinearLayout>-->
+</LinearLayout>
