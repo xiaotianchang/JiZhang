@@ -44,7 +44,7 @@ class DateUtil {
         //获取年月
         val yearMonth: String
             get() {
-                val sdf = SimpleDateFormat("yyyyMM")
+                val sdf = SimpleDateFormat("yyyy/MM")
                 val curDate = Date(System.currentTimeMillis())
                 return sdf.format(curDate)
             }
@@ -500,8 +500,8 @@ class DateUtil {
             var parse: Date?
             var dateString = ""
             try {
-                parse = SimpleDateFormat("yyyy-MM-dd").parse(date)
-                dateString = SimpleDateFormat("yyyy年MM月-dd日").format(parse)
+                parse = SimpleDateFormat("MM/dd").parse(date)
+                dateString = SimpleDateFormat("MM月d日").format(parse)
             } catch (e : ParseException) {
                 dateString = date!!
                 LogUtil.logD("日期格式化异常" + e.message)

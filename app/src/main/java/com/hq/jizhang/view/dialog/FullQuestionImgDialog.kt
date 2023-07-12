@@ -11,6 +11,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.hq.jizhang.R
+import com.hq.jizhang.activity.MainActivity
 import com.hq.jizhang.base.BaseFragment
 import com.hq.jizhang.fragment.DisburseFragment
 import com.hq.jizhang.fragment.IncomeFragment
@@ -22,7 +23,7 @@ import kotlinx.android.synthetic.main.dialog_bookkeeping.*
  * @描述       全屏dialog
  *
  */
-class FullQuestionImgDialog : DialogFragment() {
+class FullQuestionImgDialog(var activity: MainActivity) : DialogFragment() {
 
     private var mListener : ((Int , Any) -> Unit)? = null
     private lateinit var fragmentList : MutableList<BaseFragment>

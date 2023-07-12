@@ -3,10 +3,13 @@ package com.hq.jizhang.adapter
 import android.app.Activity
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.hq.jizhang.R
 import com.hq.jizhang.base.BaseRcyViewHolder
 import com.hq.jizhang.base.BaseRecyclerAdapter
-import com.hq.jizhang.bean.DetailSqlBean
+import com.hq.jizhang.bean.ItemDetailBean
+import com.hq.jizhang.util.DateUtil
 
 
 /*
@@ -15,9 +18,9 @@ import com.hq.jizhang.bean.DetailSqlBean
  * @描述       明细
  *
  */
-class DetailAdapter : BaseRecyclerAdapter<DetailSqlBean , BaseRcyViewHolder> {
+class DetailAdapter : BaseRecyclerAdapter<ItemDetailBean , BaseRcyViewHolder> {
 
-    constructor(baseActivity : Activity ) : super(baseActivity )
+    constructor(baseActivity : Activity) : super(baseActivity)
 
     override fun onCreateViewHolder(parent : ViewGroup , viewType : Int) : BaseRcyViewHolder {
         return BaseRcyViewHolder(
@@ -25,12 +28,14 @@ class DetailAdapter : BaseRecyclerAdapter<DetailSqlBean , BaseRcyViewHolder> {
     }
 
     override fun onBindViewHolder(holder : BaseRcyViewHolder , position : Int) {
-        mData.apply {
+        mData[position].apply {
+            holder.setText(
+                R.id.item_detail_tv_date , DateUtil.dateToDateText(date.substring(5 , date.length)) + "  " + week)
 
-           /* holder.setText(R.id.item_areaCode_tv_address , this[position].country)
-            holder.setOnClickListener(R.id.item_areaCode_cl){ v->
-                mListener?.invoke(position, StringUtil.getString(this[position].mobilePrefix))
-            }*/
+            holder.setText(
+                R.id.item_detail_tv_income , "收入: $incomeMoney    支出: $disburseMoney")
+            holder.getView<RecyclerView>(R.id.item_detail_rcy).layoutManager = LinearLayoutManager(mContext)
+            holder.getView<RecyclerView>(R.id.item_detail_rcy).adapter = ItemDetailAdapter(mContext , listItemDetailBean)
         }
     }
 }

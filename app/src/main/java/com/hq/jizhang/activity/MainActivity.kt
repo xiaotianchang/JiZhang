@@ -4,15 +4,14 @@ import android.view.View
 import com.hq.jizhang.R
 import com.hq.jizhang.adapter.AdapterFragmentPager
 import com.hq.jizhang.base.BaseActivity
-import com.hq.jizhang.bean.DetailSqlBean
-import com.hq.jizhang.bean.ItemDetailBean
-import com.hq.jizhang.util.LogUtil
+import com.hq.jizhang.base.BaseApplication
+import com.hq.jizhang.fragment.DetailFragment
 import com.hq.jizhang.view.dialog.FullQuestionImgDialog
 import kotlinx.android.synthetic.main.activity_main.*
-import org.litepal.LitePal
 
 class MainActivity : BaseActivity() {
 
+    private lateinit var adapterFragmentPager : AdapterFragmentPager
     private lateinit var fullQuestionImgDialog : FullQuestionImgDialog
 
     override fun initView() : View {
@@ -23,33 +22,13 @@ class MainActivity : BaseActivity() {
         return false
     }
 
-    override fun onStart() {
-        super.onStart()
-        val mutableListOf = mutableListOf<ItemDetailBean>()
-        val findAll = LitePal.findAll(DetailSqlBean::class.java)
-
-        findAll.forEach {detail->
-            val itemDetailBean = ItemDetailBean()
-            val sameDate = findAll.filter { detail.date == it.date }.toMutableList()
-            itemDetailBean.listItemDetailBean=sameDate
-            itemDetailBean.date=detail.date
-            itemDetailBean.week=detail.week
-            itemDetailBean.type=detail.type
-            mutableListOf.add(itemDetailBean)
-
-            LogUtil.logD("=="+detail.toString())
-        }
-
-        mutableListOf.forEach {
-            LogUtil.logD("================"+it.toString())
-        }
-    }
 
     override fun initData() {
-        main_vp.adapter = AdapterFragmentPager(this)
+        adapterFragmentPager = AdapterFragmentPager(this)
+        main_vp.adapter = adapterFragmentPager
         main_vp.offscreenPageLimit = 3
         main_vp.isUserInputEnabled = false
-        fullQuestionImgDialog  = FullQuestionImgDialog()
+        fullQuestionImgDialog  = FullQuestionImgDialog(this)
     }
 
     override fun initEvent() {
@@ -57,8 +36,16 @@ class MainActivity : BaseActivity() {
     }
 
     open fun showBookkeeping(){
-        if (!fullQuestionImgDialog.isVisible)
-        fullQuestionImgDialog.show(supportFragmentManager,"ABC")
+        if (!fullQuestionImgDialog.isVisible){
+            BaseApplication.disburseList.forEach { it.isSelect=false }
+            BaseApplication.incomeList.forEach { it.isSelect=false }
+            fullQuestionImgDialog.show(supportFragmentManager,"ABC")
+        }
+    }
+
+    open fun refreshData(){
+        (adapterFragmentPager.fragments[0] as DetailFragment).getItemData()
+        (adapterFragmentPager.fragments[0] as DetailFragment).getMonthMoneyData()
     }
 
     override fun myOnClick(view : View) {

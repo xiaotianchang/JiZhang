@@ -16,7 +16,7 @@ import com.hq.jizhang.fragment.DetailFragment
  */
 class AdapterFragmentPager (fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
 
-    private val fragments: SparseArray<BaseFragment> = SparseArray()
+     val fragments: SparseArray<BaseFragment> = SparseArray()
 
     init {
         fragments.put(PAGE_HOME, DetailFragment.createFragment())

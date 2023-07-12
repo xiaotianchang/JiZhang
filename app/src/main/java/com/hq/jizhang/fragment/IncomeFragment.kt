@@ -15,6 +15,7 @@ import com.hq.jizhang.R
 import com.hq.jizhang.activity.JokerKeyBoradHelper
 import com.hq.jizhang.activity.JokerKeyBoradHelper.KeyboardCallBack
 import com.hq.jizhang.adapter.IncomeAdapter
+import com.hq.jizhang.base.BaseApplication
 import com.hq.jizhang.base.BaseFragment
 import com.hq.jizhang.bean.DetailSqlBean
 import com.hq.jizhang.bean.TypeBean
@@ -52,16 +53,11 @@ class IncomeFragment(var fullQuestionImgDialog : FullQuestionImgDialog) : BaseFr
     override fun initData() {
         initKey()
         initTimePicker()
-        val incomeList = mutableListOf<TypeBean>()
-        incomeList.add(TypeBean("工资" , R.mipmap.home_notice))
-        incomeList.add(TypeBean("理财" , R.mipmap.home_notice))
-        incomeList.add(TypeBean("礼金" , R.mipmap.home_notice))
-        incomeList.add(TypeBean("其他" , R.mipmap.home_notice))
-        incomeList.add(TypeBean("兼职" , R.mipmap.home_notice))
+
         fg_income_rcy.layoutManager= GridLayoutManager(mActivity , 4)
         incomeAdapter = IncomeAdapter(mActivity)
         fg_income_rcy.adapter=incomeAdapter
-        incomeAdapter.updateItems(incomeList)
+        incomeAdapter.updateItems(BaseApplication.incomeList)
 
     }
 
@@ -158,16 +154,22 @@ class IncomeFragment(var fullQuestionImgDialog : FullQuestionImgDialog) : BaseFr
                 if (StringUtil.getString(key.label)=="今天"){
                     val replace = DateUtil.curDate.replace("-" , "/")
                     detailBean.date = replace
+                    detailBean.month = DateUtil.getMonth()
+                    detailBean.yearMonth = DateUtil.yearMonth
                 }else{
                     detailBean.date = StringUtil.getString(key.label)
+                    detailBean.month = detailBean.date.substring(5,7)
+                    detailBean.yearMonth = detailBean.date.substring(0,7)
                 }
                 detailBean.week = DateUtil.getWeekByDateStr(detailBean.date)
                 detailBean.money = fg_income_et_money.text.toString()
                 detailBean.note = fg_income_et_note.text.toString()
                 detailBean.type = CommonConstant.MainActivity.TYPE_INCOME
+                detailBean.name = incomeAdapter.getData().find { it.isSelect }?.title
                 val save = detailBean.save()
                 LogUtil.logD("save"+save+"======"+detailBean.toString())
                 fullQuestionImgDialog.dismiss()
+                fullQuestionImgDialog.activity.refreshData()
             }
 
             override fun dateCallback(key : Keyboard.Key) {
