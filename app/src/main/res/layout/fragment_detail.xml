@@ -21,9 +21,9 @@
             android:id="@+id/fg_detail_tv_year"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2023"
             android:textColor="@color/white"
             android:textSize="13sp"
+            android:alpha="0.6"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/fg_detail_rl" />
 
@@ -32,11 +32,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableEnd="@mipmap/arrow_bottom"
-            android:text="07"
             android:gravity="center_vertical"
             android:textColor="@color/white"
-            android:textSize="15sp"
-            android:drawablePadding="5dp"
+            android:textSize="13sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/fg_detail_tv_year" />
 
@@ -44,7 +42,7 @@
             android:id="@+id/fg_detail_view_month"
             android:layout_width="0.8dp"
             android:layout_height="0dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="12dp"
             android:background="@color/white"
             app:layout_constraintBottom_toBottomOf="@id/fg_detail_tv_month"
             app:layout_constraintStart_toEndOf="@id/fg_detail_tv_month"
@@ -53,7 +51,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="12dp"
             android:orientation="horizontal"
             app:layout_constraintLeft_toRightOf="@id/fg_detail_view_month"
             app:layout_constraintRight_toRightOf="parent"
@@ -64,6 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="收入"
+                android:alpha="0.6"
                 android:textColor="@color/white"
                 android:textSize="13sp" />
 
@@ -72,6 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="支出"
+                android:alpha="0.6"
                 android:textColor="@color/white"
                 android:textSize="13sp" />
         </LinearLayout>

@@ -21,7 +21,6 @@ abstract class BaseFragment : RxFragment(), ClickAction {
     private val continuousClickTime = 1500 //两次点击间隔不能少于1500ms
     private var  tempView: View? = null
     protected lateinit var mActivity: BaseActivity
-    var language: String = ""
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

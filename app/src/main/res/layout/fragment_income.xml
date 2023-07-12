@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fg_income_rcy"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:id="@+id/fg_income_ll_board"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:orientation="vertical">
+        
+        <View
+            android:background="@color/colorLines"
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:paddingBottom="12dp"
+            android:paddingTop="12dp">
+
+            <EditText
+                android:id="@+id/fg_income_et_note"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:gravity="left|center_vertical"
+                android:hint="点击填写备注"
+                android:lines="1"
+                android:maxLines="1"
+                android:textColor="@color/text_three"
+                android:textSize="14sp"
+                tools:ignore="RtlHardcoded" />
+
+            <EditText
+                android:id="@+id/fg_income_et_money"
+                android:layout_width="wrap_content"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:enabled="false"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/text_three"
+                android:textSize="15sp"
+                android:background="@null"
+                android:textColorHint="@color/text_three"
+                android:gravity="center_vertical"
+                android:hint="0" />
+        </LinearLayout>
+
+        <com.hq.jizhang.activity.JokerCustomKeyBoradView
+            android:id="@+id/fg_income_board"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/keyboard_background"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:keyBackground="@drawable/key_background"
+            android:keyTextColor="@color/text_three"
+            android:keyTextSize="14sp"
+            android:paddingTop="0dp"
+            android:paddingBottom="0dp"
+            android:shadowRadius="0.0" />
+    </LinearLayout>
+</LinearLayout>

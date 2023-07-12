@@ -48,6 +48,7 @@ ext {
             zxingVersion = "3.4.0",
             androidxActivityVersion = "1.2.0",
             androidxFragmentVersion = "1.3.0",
+            litePalVersion = "2.0.0",
     ]
     dependencies = [
             //android 官方库
@@ -96,6 +97,9 @@ ext {
             filedownloader         : "com.liulishuo.filedownloader:library:$filedownloaderVersion",
             /*        //图片放大
                     photoView              : "com.github.chrisbanes:PhotoView:library:$photoViewVersion"*/
+
+            //litePal数据库
+            litePal                : "org.litepal.android:core:$litePalVersion",
 
     ]
 

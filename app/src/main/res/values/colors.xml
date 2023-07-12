@@ -13,8 +13,8 @@
     <color name="common_text">#79838F</color>
     <color name="common_hint">#9fa0a0</color>
     <color name="st_text">#292D23</color>
-    <color name="btnBlue">#0061D9</color>
-    <color name="btnBlues">#0078FF</color>
+    <color name="btnBlue">#0078FF</color>
+    <color name="btnBlues">#0061D9</color>
     <color name="btnPressedBlue">#990061D9</color>
     <color name="viewBg">#F74D2E</color>
     <color name="viewBgPress">#99F74D2E</color>

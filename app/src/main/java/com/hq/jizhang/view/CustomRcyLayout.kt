@@ -42,7 +42,7 @@ class CustomRcyLayout @JvmOverloads constructor(
         return rcy_refresh
     }
 
-    fun getEmpty(): TextView {
+    fun getTvEmpty(): TextView {
         return rcy_tv_to
     }
 

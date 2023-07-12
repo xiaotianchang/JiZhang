@@ -53,8 +53,9 @@ object CommonConstant {
         var offlineResPath = "hybridapp/"
     }
 
-    object SingleChoiceSelectsDialog {
-        const val TYPE_LANGUAGE=0
+    object MainActivity {
+        const val TYPE_INCOME="income"
+        const val TYPE_DISBURSE="disburse"
 
     }
 }

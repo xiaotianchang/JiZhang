@@ -98,4 +98,7 @@ dependencies {
     implementation rootProject.ext.dependencies."filedownloader"
     //申请手机权限
     implementation rootProject.ext.dependencies."xxpermissions"
+    implementation rootProject.ext.dependencies."litePal"
+    implementation project(':pickerview')
+
 }

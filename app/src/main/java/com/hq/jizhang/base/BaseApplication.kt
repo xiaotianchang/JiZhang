@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.content.res.Configuration
 import android.os.Handler
+import org.litepal.LitePal
 
 /*
  * @创建者     肖天长
@@ -27,6 +28,8 @@ open class BaseApplication : Application() {
         super.onCreate()
         instances = this
         mAppContext = this
+
+        LitePal.initialize(this)
 
     }
 
