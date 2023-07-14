@@ -33,7 +33,6 @@ open class BaseApplication : Application() {
 
         LitePal.initialize(this)
 
-
     }
 
 

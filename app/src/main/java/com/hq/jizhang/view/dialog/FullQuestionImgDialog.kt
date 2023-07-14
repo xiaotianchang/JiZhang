@@ -2,11 +2,10 @@ package com.hq.jizhang.view.dialog
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.Window
+import android.view.*
+import android.view.View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -25,8 +24,13 @@ import kotlinx.android.synthetic.main.dialog_bookkeeping.*
  */
 class FullQuestionImgDialog(var activity: MainActivity) : DialogFragment() {
 
-    private var mListener : ((Int , Any) -> Unit)? = null
+    private var dismissListener : ((Int , Any) -> Unit)? = null
     private lateinit var fragmentList : MutableList<BaseFragment>
+
+    override fun onCreate(savedInstanceState : Bundle?) {
+        super.onCreate(savedInstanceState)
+        setStyle(STYLE_NORMAL, R.style.FullDialog) //设置为全局沉浸到状态栏 无效可能因为ImmersionBar
+    }
 
     override fun onCreateView(inflater : LayoutInflater , container : ViewGroup? , savedInstanceState : Bundle?) : View? {
         dialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -52,6 +56,7 @@ class FullQuestionImgDialog(var activity: MainActivity) : DialogFragment() {
         //一定要在setContentView之后调用，否则无效
         window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT , ViewGroup.LayoutParams.MATCH_PARENT)
         window?.setDimAmount(0f)
+
         initData()
         initEvent()
     }
@@ -67,6 +72,11 @@ class FullQuestionImgDialog(var activity: MainActivity) : DialogFragment() {
         dialog_bookkeeping_vp.offscreenPageLimit = titleList.size
         dialog_bookkeeping_vp.adapter = BarAdapter(childFragmentManager , titleList)
         dialog_bookkeeping_tab.setViewPager(dialog_bookkeeping_vp)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        dismissListener?.invoke(0,0)
     }
 
     inner class BarAdapter(fm : FragmentManager , var data : MutableList<String>) : FragmentPagerAdapter(fm) {
@@ -85,7 +95,7 @@ class FullQuestionImgDialog(var activity: MainActivity) : DialogFragment() {
     }
 
     fun setOnItemClickListener(listener : (position : Int , item : Any) -> Unit) {
-        this.mListener = listener
+        this.dismissListener = listener
     }
 
 }

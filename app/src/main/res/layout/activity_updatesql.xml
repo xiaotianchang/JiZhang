@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tl="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:background="@drawable/shape_blue_title"
+        android:paddingTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.flyco.tablayout.SlidingTabLayout
+            android:id="@+id/updateSql_tab"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:paddingLeft="100dp"
+            android:paddingRight="100dp"
+            tl:tl_indicator_color="@color/white"
+            tl:tl_indicator_height="2dp"
+            tl:tl_tab_space_equal="true"
+            tl:tl_textBold="BOTH"
+            tl:tl_indicator_width="12dp"
+            tl:tl_textSelectColor="@color/white"
+            tl:tl_textUnselectColor="@color/text7A"
+            tl:tl_textsize="16sp" />
+
+        <TextView
+            android:id="@+id/updateSql_tv_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center"
+            android:padding="12dp"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:text="取消" />
+    </FrameLayout>
+
+    <View style="@style/HorizontalLineStyle" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/updateSql_vp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/white" />
+</LinearLayout>

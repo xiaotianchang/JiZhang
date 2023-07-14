@@ -12,6 +12,7 @@ import com.bigkoo.pickerview.builder.TimePickerBuilder
 import com.bigkoo.pickerview.view.TimePickerView
 import com.gyf.immersionbar.ImmersionBar
 import com.hq.jizhang.R
+import com.hq.jizhang.activity.UpdateSqlActivity
 import com.hq.jizhang.view.JokerKeyBoradHelper
 import com.hq.jizhang.view.JokerKeyBoradHelper.KeyboardCallBack
 import com.hq.jizhang.adapter.IncomeAdapter
@@ -22,17 +23,17 @@ import com.hq.jizhang.cons.CommonConstant
 import com.hq.jizhang.util.DateUtil
 import com.hq.jizhang.util.LogUtil
 import com.hq.jizhang.util.StringUtil
-import com.hq.jizhang.view.dialog.FullQuestionImgDialog
 import kotlinx.android.synthetic.main.fragment_income.*
+import org.litepal.LitePal
 
 
 /*
  * @创建者      肖天长
  * @创建时间    2022/05/30 16:31
- * @描述       收入
+ * @描述       修改收入
  *
  */
-class IncomeFragment(var fullQuestionImgDialog : FullQuestionImgDialog) : BaseFragment() {
+class UpdateIncomeFragment(var detailSqlBean:DetailSqlBean?) : BaseFragment() {
 
     private lateinit var incomeAdapter:IncomeAdapter
     private lateinit var mKey : Keyboard.Key
@@ -40,8 +41,8 @@ class IncomeFragment(var fullQuestionImgDialog : FullQuestionImgDialog) : BaseFr
     private lateinit var timePicker : TimePickerView
 
     companion object {
-        fun createFragment(fullQuestionImgDialog : FullQuestionImgDialog) : IncomeFragment {
-            return IncomeFragment(fullQuestionImgDialog)
+        fun createFragment(detailSqlBean:DetailSqlBean?) : UpdateIncomeFragment {
+            return UpdateIncomeFragment(detailSqlBean)
         }
     }
 
@@ -58,14 +59,23 @@ class IncomeFragment(var fullQuestionImgDialog : FullQuestionImgDialog) : BaseFr
         fg_income_rcy.adapter=incomeAdapter
         incomeAdapter.updateItems(BaseApplication.incomeList)
 
+        detailSqlBean?.apply {
+            fg_income_et_note.setText(note)
+            fg_income_et_money.setText(money)
+            incomeAdapter.getData().find { it.title==name }?.apply { isSelect=true }
+            incomeAdapter.notifyDataSetChanged()
+          //  fg_income_ll_board.visibility=View.VISIBLE
+            fg_income_scl.visibility=View.VISIBLE
+            fg_income_board.visibility=View.VISIBLE
+        }
     }
 
     override fun initEvent() {
         setOnClickListener()
         incomeAdapter.setOnItemClickListener { position , item ->
-            /* if (fg_income_ll_board.visibility == View.GONE) {
-                 fg_income_ll_board.visibility = View.VISIBLE
-             } */
+           /* if (fg_income_ll_board.visibility == View.GONE) {
+                fg_income_ll_board.visibility = View.VISIBLE
+            } */
             fg_income_scl.visibility=View.VISIBLE
             if (fg_income_board.visibility == View.GONE) {
                 fg_income_board.visibility = View.VISIBLE
@@ -153,24 +163,25 @@ class IncomeFragment(var fullQuestionImgDialog : FullQuestionImgDialog) : BaseFr
             override fun doneCallback() {
                 val key : Keyboard.Key = helper.getKey(- 100000)
                 LogUtil.logD("最终内容" + fg_income_et_note.text.toString() + "\n" + fg_income_et_money.text.toString())
-                val detailBean = DetailSqlBean()
-                if (StringUtil.getString(key.label)=="今天"){
-                    val replace = DateUtil.curDate.replace("-" , "/")
-                    detailBean.date = replace
-                    detailBean.yearMonth = DateUtil.yearMonth
-                }else{
-                    detailBean.date = StringUtil.getString(key.label)
-                    detailBean.yearMonth = detailBean.date.substring(0,7)
+
+                detailSqlBean?.apply {
+                    if (StringUtil.getString(key.label)=="今天"){
+                        val replace = DateUtil.curDate.replace("-" , "/")
+                        date = replace
+                        yearMonth = DateUtil.yearMonth
+                    }else{
+                        date = StringUtil.getString(key.label)
+                        yearMonth = date.substring(0,7)
+                    }
+                    week = date.let { DateUtil.getWeekByDateStr(it) }
+                    money = fg_income_et_money.text.toString()
+                    note = fg_income_et_note.text.toString()
+                    type = CommonConstant.MainActivity.TYPE_INCOME
+                    name = incomeAdapter.getData().find { it.isSelect }?.title
+                    val update = update(id)
+                    LogUtil.logD("update"+update+"======"+detailSqlBean?.toString())
+                    (mActivity as UpdateSqlActivity).finishHideInput()
                 }
-                detailBean.week = DateUtil.getWeekByDateStr(detailBean.date)
-                detailBean.money = fg_income_et_money.text.toString()
-                detailBean.note = fg_income_et_note.text.toString()
-                detailBean.type = CommonConstant.MainActivity.TYPE_INCOME
-                detailBean.name = incomeAdapter.getData().find { it.isSelect }?.title
-                val save = detailBean.save()
-                LogUtil.logD("save"+save+"======"+detailBean.toString())
-                fullQuestionImgDialog.dismiss()
-                fullQuestionImgDialog.activity.refreshData()
             }
 
             override fun dateCallback(key : Keyboard.Key) {

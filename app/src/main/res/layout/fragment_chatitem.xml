@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/fg_chatItem_typeMoney"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="14dp"
+        android:text="总支出"
+        android:textColor="@color/text_three"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/fg_chatItem_average"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="2dp"
+        android:text="平均值"
+        android:textColor="@color/text_three"
+        android:textSize="14sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:layout_marginTop="14dp"
+        android:background="@color/colorLines" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:text="支出排行版"
+        android:textColor="@color/text_nine"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <View
+        style="@style/HorizontalLineStyle"
+        android:layout_marginTop="10dp" />
+
+    <com.hq.jizhang.view.EmptyRecyclerView
+        android:id="@+id/fg_chatItem_rcy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp" />
+</LinearLayout>

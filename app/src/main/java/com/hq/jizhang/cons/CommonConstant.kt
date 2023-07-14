@@ -57,5 +57,7 @@ object CommonConstant {
         const val TYPE_INCOME="income"
         const val TYPE_DISBURSE="disburse"
 
+        const val UPDATE_DATA="updateData"
+
     }
 }

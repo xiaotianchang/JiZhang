@@ -6,28 +6,34 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.hq.jizhang.view.EmptyRecyclerView
-            android:id="@+id/rcy_view"
+ <!--       <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1">-->
+
+            <com.hq.jizhang.view.EmptyRecyclerView
+                android:id="@+id/rcy_view"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+  <!--      </LinearLayout>-->
 
     </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
 
     <LinearLayout
         android:id="@+id/rcy_ll_noData"
-        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:contentDescription="@null"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <ImageView
-            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher"/>
+            android:src="@mipmap/ic_launcher"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/rcy_tv_to"
@@ -35,6 +41,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="该月还没有记账哦，去记账"
-            android:textSize="15sp"/>
+            android:textSize="15sp" />
     </LinearLayout>
 </merge>

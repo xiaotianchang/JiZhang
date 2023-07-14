@@ -21,9 +21,9 @@
             android:id="@+id/fg_detail_tv_year"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:alpha="0.6"
             android:textColor="@color/white"
             android:textSize="13sp"
-            android:alpha="0.6"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/fg_detail_rl" />
 
@@ -31,9 +31,9 @@
             android:id="@+id/fg_detail_tv_month"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
             android:drawableEnd="@mipmap/arrow_bottom"
             android:gravity="center_vertical"
-            android:layout_marginTop="3dp"
             android:textColor="@color/white"
             android:textSize="13sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -63,8 +63,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="收入"
                 android:alpha="0.6"
+                android:text="收入"
                 android:textColor="@color/white"
                 android:textSize="13sp" />
 
@@ -72,43 +72,45 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="支出"
                 android:alpha="0.6"
+                android:text="支出"
                 android:textColor="@color/white"
                 android:textSize="13sp" />
         </LinearLayout>
 
         <LinearLayout
-            app:layout_constraintBottom_toBottomOf="@id/fg_detail_tv_month"
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/fg_detail_tv_month"
             app:layout_constraintLeft_toLeftOf="@id/fg_detail_ll"
-            android:layout_height="wrap_content">
+            app:layout_constraintRight_toRightOf="parent">
 
             <TextView
                 android:id="@+id/fg_detail_tv_income"
-                android:textColor="@color/white"
-                android:textSize="13sp"
                 android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_height="wrap_content"/>
+                android:textColor="@color/white"
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/fg_detail_tv_disburse"
-                android:textColor="@color/white"
-                android:textSize="13sp"
                 android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_height="wrap_content"/>
+                android:textColor="@color/white"
+                android:textSize="13sp" />
         </LinearLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+
     <com.hq.jizhang.view.CustomRcyLayout
         android:id="@+id/fg_detail_view_rcy"
-        android:background="@color/colorLines"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:background="@color/colorLines" />
+
 </LinearLayout>

@@ -103,7 +103,7 @@ abstract class BaseActivity : RxAppCompatActivity(), ClickAction, KeyboardAction
         return true
     }
 
-    protected fun finishHideInput() {
+    open fun finishHideInput() {
         AppUtil.hideInput(this)
         finish()
     }

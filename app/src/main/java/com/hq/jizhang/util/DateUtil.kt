@@ -21,28 +21,28 @@ class DateUtil {
     companion object {
 
         //获取年
-        fun getYear(): String {
+        fun getYear() : String {
             val sdf = SimpleDateFormat("yyyy")
             val curDate = Date(System.currentTimeMillis())
             return sdf.format(curDate)
         }
 
         //获取月
-        fun getMonth(month : Date?=Date()): String {
+        fun getMonth(month : Date? = Date()) : String {
             val sdf = SimpleDateFormat("MM")
             val curDate = Date(System.currentTimeMillis())
             return sdf.format(if (StringUtil.isEmpty(month)) curDate else month)
         }
 
         //获取日
-        fun getDay(day : Date?=Date()): String {
+        fun getDay(day : Date? = Date()) : String {
             val sdf = SimpleDateFormat("dd")
             val curDate = Date(System.currentTimeMillis())
             return sdf.format(if (StringUtil.isEmpty(day)) curDate else day)
         }
 
         //获取年月
-        val yearMonth: String
+        val yearMonth : String
             get() {
                 val sdf = SimpleDateFormat("yyyy/MM")
                 val curDate = Date(System.currentTimeMillis())
@@ -50,7 +50,7 @@ class DateUtil {
             }
 
         //获取年月+单位
-        val yearMonthUnit: String
+        val yearMonthUnit : String
             get() {
                 val sdf = SimpleDateFormat("yyyy年MM月")
                 val curDate = Date(System.currentTimeMillis())
@@ -58,7 +58,7 @@ class DateUtil {
             }
 
         //获取年月日当前日期  yyyy-MM-dd
-        val curDate: String
+        val curDate : String
             get() {
                 val sdf = SimpleDateFormat("yyyy-MM-dd")
                 val curDate = Date(System.currentTimeMillis())
@@ -66,7 +66,7 @@ class DateUtil {
             }
 
         //获取年月日当前日期 yyyyMMdd
-        val curDates: String
+        val curDates : String
             get() {
                 val sdf = SimpleDateFormat("yyyyMMdd")
                 val curDate = Date(System.currentTimeMillis())
@@ -74,7 +74,7 @@ class DateUtil {
             }
 
         //获取时分 12:00
-        val curTime: String
+        val curTime : String
             get() {
                 val calendar = Calendar.getInstance()
                 val hour = calendar[Calendar.HOUR_OF_DAY]
@@ -83,37 +83,34 @@ class DateUtil {
             }
 
         //获取年月日时分 2017-11-08 12:12
-        val allTime: String
+        val allTime : String
             get() {
                 val format = SimpleDateFormat("yyyy-MM-dd HH:mm")
                 return format.format(Date())
             }
 
         //获取年月日时分秒 2017-11-08 12:12:59
-        val thisTime: String
+        val thisTime : String
             get() {
-                val format =
-                    SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
                 return format.format(Date())
             }
 
         //获取年月日时分秒 2017-11-08 12:12:59
-        val thisDateTime: String
+        val thisDateTime : String
             get() {
-                val format =
-                    SimpleDateFormat("yyyyMMdd HH:mm:ss")
+                val format = SimpleDateFormat("yyyyMMdd HH:mm:ss")
                 return format.format(Date())
             }
 
         //获取年月日时分秒 12:12:59
-        val thisTimes: String
+        val thisTimes : String
             get() {
-                val format =
-                    SimpleDateFormat("HH:mm:ss")
+                val format = SimpleDateFormat("HH:mm:ss")
                 return format.format(Date())
             }
 
-        fun dateToLong(date : String?): Long {
+        fun dateToLong(date : String?) : Long {
             try {
                 return SimpleDateFormat("yyyy-MM-dd HH:mm").parse(date).time
             } catch (e : ParseException) {
@@ -121,13 +118,13 @@ class DateUtil {
             return 0
         }
 
-        fun dateToString(date : Date? , format : String? = "yyyy-MM-dd"): String {
-            val dateFormat: DateFormat = SimpleDateFormat(format)
+        fun dateToString(date : Date? , format : String? = "yyyy-MM-dd") : String {
+            val dateFormat : DateFormat = SimpleDateFormat(format)
             return dateFormat.format(date)
         }
 
         //获取指定时间  后past 天的日期
-        fun getAfterDate(time : String , past : Int): String {
+        fun getAfterDate(time : String , past : Int) : String {
             // 时间表示格式可以改变，yyyyMMdd需要写例如20160523这种形式的时间
             val sdf = SimpleDateFormat("yyyy-MM-dd")
             // 将字符串的日期转为Date类型，ParsePosition(0)表示从第一个字符开始解析
@@ -141,14 +138,13 @@ class DateUtil {
         }
 
         // 获取前5天日期
-        val dateList: List<String>
+        val dateList : List<String>
             get() {
-                val list: MutableList<String> =
-                    ArrayList()
+                val list : MutableList<String> = ArrayList()
                 val formatDate = SimpleDateFormat("MM-dd")
                 val calendar = Calendar.getInstance()
                 val beginDate = Date()
-                for (i in 4 downTo -1 + 1) {
+                for (i in 4 downTo - 1 + 1) {
                     calendar.time = beginDate
                     calendar[Calendar.DATE] = calendar[Calendar.DATE] - i - 1
                     val strDay = formatDate.format(calendar.time)
@@ -158,11 +154,11 @@ class DateUtil {
             }
 
         // 获取前5个月 +  本月
-        fun getFiveMonth(context : Context?): ArrayList<String> {
+        fun getFiveMonth(context : Context?) : ArrayList<String> {
             val list = ArrayList<String>()
             val sdf = SimpleDateFormat("yyyy年MM月")
             val c = Calendar.getInstance()
-            for (x in 4 downTo -1 + 1) {
+            for (x in 4 downTo - 1 + 1) {
                 c.time = Date()
                 c.add(Calendar.MONTH , - x - 1)
                 val m = c.time
@@ -173,7 +169,7 @@ class DateUtil {
         }
 
 
-        private fun getStringToDate(dateString : String): Long {
+        private fun getStringToDate(dateString : String) : Long {
             var dateFormat = SimpleDateFormat("yyyy-MM-dd")
             var date = Date()
             try {
@@ -185,23 +181,20 @@ class DateUtil {
         }
 
         //判断系统是否为24小时制
-        fun isHours(context : Context): Boolean {
+        fun isHours(context : Context) : Boolean {
             val cv = context.contentResolver
             val strTimeFormat = Settings.System.getString(
                 cv , Settings.System.TIME_12_24)
             return strTimeFormat == "24"
         }
 
-
         //计算后七天
-        fun lastMonday(startDate : String?): List<String> {
-            val timeList: MutableList<String> =
-                ArrayList()
-            for (i in 0..6) {
+        fun lastMonday(startDate : String?) : List<String> {
+            val timeList : MutableList<String> = ArrayList()
+            for (i in 0 .. 6) {
                 val calendar = Calendar.getInstance()
-                val simpleDateFormat =
-                    SimpleDateFormat("yyyy-MM-dd")
-                var aDate: Date? = null
+                val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
+                var aDate : Date? = null
                 try {
                     aDate = simpleDateFormat.parse(startDate)
                 } catch (e : Exception) {
@@ -213,17 +206,16 @@ class DateUtil {
                 timeList.add(time)
             }
             return timeList
-        }//星期六//星期五//星期四//星期三//星期二//星期一//星期天
+        } //星期六//星期五//星期四//星期三//星期二//星期一//星期天
 
         //获取星期日
-        val sunday: String?
+        val sunday : String?
             get() {
                 val date = Date()
                 val calendar = Calendar.getInstance()
-                var string: String? = null
+                var string : String? = null
                 val i = calendar[Calendar.DAY_OF_WEEK]
-                val simpleDateFormat =
-                    SimpleDateFormat("yyyy-MM-dd")
+                val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
                 //星期天
                 return if (i == 1) {
                     string = simpleDateFormat.format(date)
@@ -250,10 +242,9 @@ class DateUtil {
             }
 
         //计算日期
-        private fun getTimeLow(date : Date? , i : Int): String {
+        private fun getTimeLow(date : Date? , i : Int) : String {
             var date = date
-            val simpleDateFormat =
-                SimpleDateFormat("yyyy-MM-dd")
+            val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
             val calendar = Calendar.getInstance()
             calendar.time = date
             calendar.add(Calendar.DAY_OF_YEAR , - i)
@@ -261,10 +252,9 @@ class DateUtil {
             return simpleDateFormat.format(date)
         }
 
-        private fun getTimeUp(date : Date? , i : Int): String {
+        private fun getTimeUp(date : Date? , i : Int) : String {
             var date = date
-            val simpleDateFormat =
-                SimpleDateFormat("yyyy-MM-dd")
+            val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
             val calendar = Calendar.getInstance()
             calendar.time = date
             calendar.add(Calendar.DAY_OF_YEAR , + i)
@@ -273,14 +263,13 @@ class DateUtil {
         }
 
         //获取星期六
-        fun getSaturday(count : Int): String? {
+        fun getSaturday(count : Int) : String? {
             val date = Date()
             val a = count * 7
             val calendar = Calendar.getInstance()
-            var string: String? = null
+            var string : String? = null
             val i = calendar[Calendar.DAY_OF_WEEK]
-            val simpleDateFormat =
-                SimpleDateFormat("yyyy-MM-dd")
+            val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
             //星期六
             return if (i == 7) {
                 string = simpleDateFormat.format(date)
@@ -310,7 +299,7 @@ class DateUtil {
          * @param date
          * @return
          */
-        private fun getDaysOfMonth(date : Date?): Int {
+        private fun getDaysOfMonth(date : Date?) : Int {
             val calendar = Calendar.getInstance()
             calendar.time = date
             return calendar.getActualMaximum(Calendar.DAY_OF_MONTH)
@@ -321,7 +310,7 @@ class DateUtil {
          *
          * @return
          */
-        private fun getMonth(i : Int): String {
+        private fun getMonth(i : Int) : String {
             val cal = Calendar.getInstance()
             cal.add(Calendar.MONTH , i)
             val dft = SimpleDateFormat("yyyy-MM-dd")
@@ -339,10 +328,9 @@ class DateUtil {
          * @throws Exception
          */
         @Throws(Exception::class)
-        fun getMonthStartOrEnd(i : Int): Map<String , Any> {
+        fun getMonthStartOrEnd(i : Int) : Map<String , Any> {
             var day = 0
-            val dateMap: MutableMap<String , Any> =
-                HashMap()
+            val dateMap : MutableMap<String , Any> = HashMap()
             val format = SimpleDateFormat("yyyy-MM-dd")
             val calendar = Calendar.getInstance() //获取当前日期
             day = if (i != 0) {
@@ -356,7 +344,6 @@ class DateUtil {
             var str = format.format(calendar.time) //起始日期
             LogUtil.logD("===============first:$str")
             dateMap["startM"] = str
-
             //月份最后一天
             calendar[Calendar.DAY_OF_MONTH] = day
             str = format.format(calendar.time) //结束日期
@@ -371,22 +358,18 @@ class DateUtil {
          *
          * @return
          */
-        fun getThisWeekDate(i : Int): Map<String , Any> {
-            val dateMap: MutableMap<String , Any> =
-                HashMap()
+        fun getThisWeekDate(i : Int) : Map<String , Any> {
+            val dateMap : MutableMap<String , Any> = HashMap()
             val df = SimpleDateFormat("yyyy-MM-dd")
-
             // 根据今天的时间获取本周属于本月的第几周
             val now = Calendar.getInstance()
             now.add(Calendar.WEEK_OF_MONTH , i)
             now[Calendar.DAY_OF_WEEK] = Calendar.MONDAY // 获取本周一的日期
             val wom = now[Calendar.WEEK_OF_MONTH]
             dateMap["indexOfWeek"] = wom
-
             // 根据今天的时间获取本周的开始时间
             now[Calendar.HOUR_OF_DAY] = 0
             dateMap["startDateOfWeek"] = df.format(now.time)
-
             // 根据今天的时间获取本周的结束时间
             now[Calendar.DAY_OF_WEEK] = Calendar.SUNDAY
             now.add(Calendar.WEEK_OF_YEAR , 1)
@@ -394,7 +377,6 @@ class DateUtil {
             dateMap["endDateOfWeek"] = df.format(now.time)
             return dateMap
         }
-
 
         /**
          * <pre>
@@ -405,8 +387,8 @@ class DateUtil {
          * @return week
          * 星期几(MONDAY,TUESDAY,WEDNESDAY,THURSDAY,FRIDAY,SATURDAY,SUNDAY)
          */
-        fun getWeekByDateStr(strDate : String): String {
-            if(strDate.length!=10)return ""
+        fun getWeekByDateStr(strDate : String) : String {
+            if (strDate.length != 10) return ""
             val year = strDate.substring(0 , 4).toInt()
             val month = strDate.substring(5 , 7).toInt()
             val day = strDate.substring(8 , 10).toInt()
@@ -435,7 +417,7 @@ class DateUtil {
          * @param millisecond
          * @return
          */
-        fun getDateTimeFromMillisecond(millisecond : Long?): String {
+        fun getDateTimeFromMillisecond(millisecond : Long?) : String {
             val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
             val date = Date(millisecond !!)
             return simpleDateFormat.format(date)
@@ -448,14 +430,13 @@ class DateUtil {
          * @param time
          * @return
          */
-        fun timeStrToSecond(time : String?): Long {
+        fun timeStrToSecond(time : String?) : Long {
             try {
-                val format =
-                    SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
                 return format.parse(time).time
             } catch (e : Exception) {
             }
-            return -1L
+            return - 1L
         }
 
         /**
@@ -465,8 +446,8 @@ class DateUtil {
          * @param time
          * @return
          */
-        fun dateStrToSecond(time : String? = ""): Long {
-            var date: String? = time
+        fun dateStrToSecond(time : String? = "") : Long {
+            var date : String? = time
             if (StringUtil.isEmpty(date)) {
                 date = curDate
             }
@@ -475,19 +456,19 @@ class DateUtil {
                 return format.parse(date).time
             } catch (e : Exception) {
             }
-            return -1L
+            return - 1L
         }
 
         //yyyyMMdd 转 yyyy-MM-dd
-        fun dateConversion(date : String?): String {
+        fun dateConversion(date : String?) : String {
             if (StringUtil.isEmpty(date)) return ""
-            var parse: Date?
+            var parse : Date?
             var dateString = ""
             try {
                 parse = SimpleDateFormat("yyyyMMdd").parse(date)
                 dateString = SimpleDateFormat("yyyy-MM-dd").format(parse)
             } catch (e : ParseException) {
-                dateString = date!!
+                dateString = date !!
                 LogUtil.logD("日期格式化异常" + e.message)
                 return dateString
             }
@@ -495,15 +476,15 @@ class DateUtil {
         }
 
         //yyyy-MM-dd 转 yyyy年MM月dd日
-        fun dateToDateText(date : String?): String {
+        fun dateToDateText(date : String?) : String {
             if (StringUtil.isEmpty(date)) return ""
-            var parse: Date?
+            var parse : Date?
             var dateString = ""
             try {
                 parse = SimpleDateFormat("MM/dd").parse(date)
                 dateString = SimpleDateFormat("MM月d日").format(parse)
             } catch (e : ParseException) {
-                dateString = date!!
+                dateString = date !!
                 LogUtil.logD("日期格式化异常" + e.message)
                 return dateString
             }
@@ -511,7 +492,7 @@ class DateUtil {
         }
 
         //日期比较   simpleDateFormat yyyy-MM-dd
-        fun compareDate(startDate : String? , endDate : String? , simpleDateFormat : String): Boolean {
+        fun compareDate(startDate : String? , endDate : String? , simpleDateFormat : String) : Boolean {
             val simpleDateFormat = SimpleDateFormat(simpleDateFormat)
             val startDate = simpleDateFormat.parse(startDate)
             val thisDate = simpleDateFormat.parse(endDate)
@@ -522,51 +503,21 @@ class DateUtil {
         }
 
         /**
-         * 日期不足10补零
-         * @param date
+         * 获取上/下n个月月份
+         * date 日期
+         * month -1上个月 1下个月
          * @return
          */
-        fun stringToDate(date : String?): String? {
-            var formatDate: String? = ""
-            var year = ""
-            var month = ""
-            var day = ""
-            if (!date.isNullOrEmpty()) {
-                year = date.substring(0 , 4)
-                if (date.length != 8) {
-                    if (date.length == 6) {
-                        month = "0" + date.substring(4 , 5)
-                        day = "0" + date.substring(5 , 6)
-                    } else if (date.length == 7) {
-                        var tempMonth = "0" + date.substring(4 , 5)
-                        var tempDay = "0" + date.substring(5 , 6)
-                        var endDay = ("0" + date.substring(6 , 7)).toInt()
-                        if (tempMonth != "1") {
-                            month = "0" + date.substring(4 , 5)
-                            day = date.substring(5 , 7)
-                        } else {
-                            if (tempDay == "0" || tempDay == "1" || tempDay == "2") {
-                                var tempDay = date.substring(5 , 7).toInt()
-                                if (tempDay < 10) {
-                                    month = "0" + date.substring(4 , 5)
-                                    day = "0" + date.substring(6 , 7)
-                                } else {
-                                    month = "0" + date.substring(5 , 6)
-                                    day = date.substring(5 , 7)
-                                }
-                            }
-                        }
-                    }
-                    formatDate = year + month + day
-                } else {
-                    formatDate = date
-                }
-
-            } else {
-                formatDate = date
-            }
-            return formatDate
+        fun getLastMonth(date : Date = Date(),month:Int=-1) : String {
+            val format = SimpleDateFormat("yyyyMM")
+            val calendar = Calendar.getInstance()
+            // 设置为当前时间
+            calendar.time = date
+            calendar.add(Calendar.MONTH , month)
+            // 设置为上一个月
+            //calendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH) - 1);
+            var dates = calendar.time
+            return format.format(dates)
         }
     }
-
 }

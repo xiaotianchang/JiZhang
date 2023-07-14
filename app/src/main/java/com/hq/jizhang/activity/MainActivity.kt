@@ -5,6 +5,7 @@ import com.hq.jizhang.R
 import com.hq.jizhang.adapter.AdapterFragmentPager
 import com.hq.jizhang.base.BaseActivity
 import com.hq.jizhang.base.BaseApplication
+import com.hq.jizhang.fragment.ChatFragment
 import com.hq.jizhang.fragment.DetailFragment
 import com.hq.jizhang.view.dialog.FullQuestionImgDialog
 import kotlinx.android.synthetic.main.activity_main.*
@@ -33,6 +34,11 @@ class MainActivity : BaseActivity() {
 
     override fun initEvent() {
         setOnClickListener(main_rb_detail , main_rb_bookkeeping , main_rb_chat)
+
+        fullQuestionImgDialog.setOnItemClickListener { position, item ->
+            if (main_vp.currentItem==2)
+            (adapterFragmentPager.fragments[2] as ChatFragment).getChatData((adapterFragmentPager.fragments[2] as ChatFragment).mType)
+        }
     }
 
     open fun showBookkeeping(){
@@ -43,7 +49,14 @@ class MainActivity : BaseActivity() {
         }
     }
 
+    //刷新明细条目条目数据
     open fun refreshData(){
+        (adapterFragmentPager.fragments[0] as DetailFragment).getItemData()
+        (adapterFragmentPager.fragments[0] as DetailFragment).getMonthMoneyData()
+    }
+
+    //获取当前年月
+    open fun getYearMonth(){
         (adapterFragmentPager.fragments[0] as DetailFragment).getItemData()
         (adapterFragmentPager.fragments[0] as DetailFragment).getMonthMoneyData()
     }
@@ -58,6 +71,7 @@ class MainActivity : BaseActivity() {
             }
             main_rb_chat -> {
                 main_vp.currentItem=2
+                (adapterFragmentPager.fragments[2] as ChatFragment).getChatData((adapterFragmentPager.fragments[2] as ChatFragment).mType)
             }
         }
     }

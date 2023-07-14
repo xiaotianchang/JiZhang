@@ -12,7 +12,7 @@ import com.bigkoo.pickerview.builder.TimePickerBuilder
 import com.bigkoo.pickerview.view.TimePickerView
 import com.gyf.immersionbar.ImmersionBar
 import com.hq.jizhang.R
-import com.hq.jizhang.activity.JokerKeyBoradHelper
+import com.hq.jizhang.view.JokerKeyBoradHelper
 import com.hq.jizhang.adapter.IncomeAdapter
 import com.hq.jizhang.base.BaseApplication
 import com.hq.jizhang.base.BaseFragment
@@ -22,6 +22,7 @@ import com.hq.jizhang.util.DateUtil
 import com.hq.jizhang.util.LogUtil
 import com.hq.jizhang.util.StringUtil
 import com.hq.jizhang.view.dialog.FullQuestionImgDialog
+import com.umeng.soexample.util.ToastUtil
 import kotlinx.android.synthetic.main.fragment_income.*
 
 /*
@@ -61,8 +62,12 @@ class DisburseFragment(var fullQuestionImgDialog : FullQuestionImgDialog) : Base
     override fun initEvent() {
         setOnClickListener()
         incomeAdapter.setOnItemClickListener { position , item ->
-            if (fg_income_ll_board.visibility == View.GONE) {
+            /* if (fg_income_ll_board.visibility == View.GONE) {
                 fg_income_ll_board.visibility = View.VISIBLE
+            } */
+            fg_income_scl.visibility=View.VISIBLE
+            if (fg_income_board.visibility == View.GONE) {
+                fg_income_board.visibility = View.VISIBLE
             }
         }
 
@@ -151,11 +156,9 @@ class DisburseFragment(var fullQuestionImgDialog : FullQuestionImgDialog) : Base
                 if (StringUtil.getString(key.label)=="今天"){
                     val replace = DateUtil.curDate.replace("-" , "/")
                     detailBean.date = replace
-                    detailBean.month = DateUtil.getMonth()
                     detailBean.yearMonth = DateUtil.yearMonth
                 }else{
                     detailBean.date = StringUtil.getString(key.label)
-                    detailBean.month = detailBean.date.substring(5,7)
                     detailBean.yearMonth = detailBean.date.substring(0,7)
                 }
                 detailBean.week = DateUtil.getWeekByDateStr(detailBean.date)
@@ -163,7 +166,7 @@ class DisburseFragment(var fullQuestionImgDialog : FullQuestionImgDialog) : Base
                 detailBean.note = fg_income_et_note.text.toString()
                 detailBean.type = CommonConstant.MainActivity.TYPE_DISBURSE
                 detailBean.name = incomeAdapter.getData().find { it.isSelect }?.title
-                val save = detailBean.save()
+                val save = detailBean.saveOrUpdate("name=? and date=?" ,detailBean.name,detailBean.date) //同款类型则更新 不同则保存
                 LogUtil.logD("save"+save+"======"+detailBean.toString())
                 fullQuestionImgDialog.dismiss()
                 fullQuestionImgDialog.activity.refreshData()

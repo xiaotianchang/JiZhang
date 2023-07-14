@@ -1,4 +1,4 @@
-package com.hq.jizhang.activity;
+package com.hq.jizhang.view;
 
 import android.content.Context;
 import android.graphics.Canvas;

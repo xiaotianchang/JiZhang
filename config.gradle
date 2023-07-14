@@ -31,7 +31,7 @@ ext {
             xxpermissions = "12.3",
             rhino_android = "1.0",
             supportVersion = "1.0.0",
-            bga_refreshlayout = "2.0.0@aar",
+            bga_refreshlayout = "2.0.1",
             swipelayoutVersion = "1.2.0@aar",
             nineoldandroids = "2.4.0",
             GildeVersion = "4.9.0",
@@ -75,7 +75,8 @@ ext {
             xxpermissions          : "com.github.getActivity:XXPermissions:$xxpermissions",
             rhino_android          : "io.apisense:rhino-android:$rhino_android",
             //下拉刷新
-            bga_refreshlayout      : "cn.bingoogolapple:bga-refreshlayout-androidx:$bga_refreshlayout",
+            bga_refreshlayout      : "com.github.bingoogolapple:BGARefreshLayout-Android:$bga_refreshlayout",
+
             swipelayout            : "com.daimajia.swipelayout:library:$swipelayoutVersion",
             //图片加载
             glide                  : "com.github.bumptech.glide:glide:$GildeVersion",

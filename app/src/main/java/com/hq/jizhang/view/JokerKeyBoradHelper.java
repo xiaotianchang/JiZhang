@@ -1,4 +1,4 @@
-package com.hq.jizhang.activity;
+package com.hq.jizhang.view;
 
 import android.content.Context;
 import android.inputmethodservice.Keyboard;
@@ -96,6 +96,7 @@ public class JokerKeyBoradHelper {
             //设置了codes属性后，点击键盘会触发该方法，回调codes的值
             //codes值与ASCLL码对应
             Editable editable = editText.getText();
+            editText.setSelection (editText.getText ().toString ().length ());
             int start = editText.getSelectionStart();
             int end = editText.getSelectionEnd();
             switch (primaryCode) {

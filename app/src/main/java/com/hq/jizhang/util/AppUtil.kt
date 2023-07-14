@@ -476,12 +476,7 @@ class AppUtil {
         fun formatToNumber(obj : BigDecimal?) : String {
             if (null != obj) {
                 var df = DecimalFormat("#.00")
-                /*currencyCode?.apply {
-                    if (ResourceUtil.getString(R.string.JPY)==this){
-                        df = DecimalFormat("0")
-                    }
-                }*/
-                var data = if (obj.compareTo(BigDecimal.ZERO) == 0) {
+                return  if (obj.compareTo(BigDecimal.ZERO) == 0) {
                     "0.00"
                 } else if (obj > BigDecimal.ZERO && obj < BigDecimal(1)) {
                     "0" + df.format(obj).toString()
@@ -492,13 +487,13 @@ class AppUtil {
                 } else {
                     df.format(obj).toString()
                 }
-                data.split(".").apply {
+               /* data.split(".").apply {
                     var str1 = ""
                     var str = get(0)
                     if (this.size > 1) str1 = get(1)
                     val formatStr = formatData(str)  //取小数点前整数去格式化计算
                     return if (! formatStr.contains(".")) "$formatStr.$str1" else formatStr + str1
-                }
+                }*/
             }
             return "0.00"
         }
